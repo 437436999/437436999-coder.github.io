@@ -27,10 +27,11 @@ tags: Github Jekyll 搭建博客
 
 那么接下来就开始用这两个工具搭建一个属于我们自己的博客吧。
 
+
 ### 1. 创建一个 Github 库并开启 Github Pages
 首先我们用自己的 Github 账号创建一个新的库（repository），这个库的名称有固定的格式： `username.github.io`，其中 `username` 必须是 Github 账户的用户名，`.github.io` 是固定的，这个地址将会成为个人站点的网站地址。另外，我们可以勾选`Initialize this repository with a README`，让仓库自动创建一个 `README.md` 文件。
 
-![我创建的 Github 库](/assets/post_img/2019-08-08-基于Jekyll与Github Pages搭建博客/微信截图_20190808185009.png)
+![我创建的 Github 库](/assets/post_img/2019-08-08/微信截图_20190808185009.png)
 
 创建完成后，进入所创建的库，在`settings`页面找到`GitHub Pages`进行设置，如果你的库有按照上述方式进行命名，则它会自动进行设置，设置成功后会该页面出现绿色的提示，成功后可选择 `Choose a theme` 选择一个主题（默认的主题比较少，我们暂时先选一个）。
 
@@ -41,6 +42,7 @@ tags: Github Jekyll 搭建博客
 补充：如果没有 Github 账号、不熟悉 Github 的使用的，可以参考下面的教程，其实我也是这几天才开始慢慢学习使用 Github 的。
 - [github新手使用指南](https://blog.csdn.net/qq_37512323/article/details/80693445)
 - [真小白入门之Github](https://blog.csdn.net/nmjuzi/article/details/82184818)
+
 
 ### 2. Jekyll 运行环境的配置与安装
 事实上，在搭建博客的过程中，配置这个安装环境我花的时间是最久的也是最懵逼的，最后也是~~不知道为什么~~才终于配置成功。
@@ -68,12 +70,13 @@ tags: Github Jekyll 搭建博客
 
 我的 Windows 在之前就已经安装好了 Python 环境，所以这一次没有进行安装，没有安装的朋友可以参考[Python安装教程](https://baijiahao.baidu.com/s?id=1606573927720991570&wfr=spider&for=pc)。
 
-如果完成了上面环境的配置，打开命令行，执行`gem install jekyll`，~~然后保佑安装过程一切正常，~~安装成功后执行`jekyll -v`检测是否安装成功，如果成功显示版本，那么恭喜你，搭建博客过程中最让人云里雾里的一部分终于完成了QAQ。
+如果完成了上面环境的配置，打开命令行，执行`gem install jekyll`，~~然后保佑安装过程一切正常，~~安装后执行`jekyll -v`检测是否安装成功，如果成功显示版本，那么恭喜你，搭建博客过程中最让人云里雾里的一部分终于完成了QAQ。
 
-```
+```cmd
 C:\Users\34961>jekyll -v
 jekyll 3.8.6
 ```
+
 
 ### 3. 个人博客的搭建
 为了让我们的博客看起来更有逼格，我们最好选择下载一个模板，在 http://jekyllthemes.org/上 可以找一个合适的模板。
@@ -82,7 +85,7 @@ jekyll 3.8.6
 - [我使用的博客模板](https://github.com/kaeyleo/jekyll-theme-H2O#%E6%A0%87%E7%AD%BE)
 
  jekyll 的目录结构大概是这样的：
-```
+```cmd
 .
 ├── assets # 存放用于线上环境的静态资源，比如我们想放在博客上的图片之类
 ├── _config.yml # 配置文件，我们通过修改这里的参数改造博客
@@ -110,9 +113,13 @@ jekyll 3.8.6
 
 几个主要文件的参数在上面的 Github 页面上有很清楚的说明，想直接用这个模板的朋友可以根据说明修改。在修改模板中，我暂时只改了`_config.yml`、`index.html`，在`../assets/img`里面加上了一些图片，将`../_posts`里的文章整理了一下。
 
+顺便一提，我修改到最后才发现这个模板使用的代码高亮库 Prism.js 里面不支持 C++ 语言，作为一个学 C++ 的人突然感到非常绝望，于是又花了不少时间查资料学着重新配置 Prism。（配置其实也挺简单的）
+
+首先我们打开[这个网址](https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript)进行 Prism 的下载，在这里可以选择想要的主题、支持的语言和一些特性，选择完成后在网址最下方选择下载`Prism.js`和`Prism.css`，将`.css`覆盖到`\assets\css`文件夹中，将`.js`文件覆盖到`\assets\js`文件夹中就完成了配置。
+
 为了看到博客呈现出来的效果，就要用上我们上一步安装的 Jekyll，先打开命令行，将路径修改至**博客模板所在路径**，执行命令` jekyll server`，复制 http://127.0.0.1:4000/ 到浏览器打开，就能看见本地的博客了。
 
-```
+```cmd
 PS E:\Github\437436999.github.io> jekyll server
 Configuration file: E:/Github/437436999.github.io/_config.yml
             Source: E:/Github/437436999.github.io
@@ -128,6 +135,7 @@ Configuration file: E:/Github/437436999.github.io/_config.yml
 ```
 
 通过查看本地博客和修改文件中的参数，我们就可以慢慢完善出一个属于自己的博客了。当你对自己本地的博客满意后，就可以开始将博客文件上传到第一步创建的 Github 库中了。
+
 
 ### 4. 博客文件的上传
 将文件上传至 Github 上的方法就不多赘述，我使用的是 GitHub 桌面版，操作起来比较简单，具体操作可以参考[这里](https://zhuanlan.zhihu.com/p/28321740)。
