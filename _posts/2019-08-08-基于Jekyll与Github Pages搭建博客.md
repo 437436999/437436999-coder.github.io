@@ -47,10 +47,10 @@ tags: C++ test
 
 那首先，根据教程，运行 Jekyll 所需的环境如下：
 
->Ruby.
->Ruby Gems.
->NodeJS或其他 JavaScript 运行环境.
->Python2.7(或2.7以上版本）
+- Ruby
+- Ruby Gems
+- NodeJS或其他 JavaScript 运行环境
+- Python2.7(或2.7以上版本）
 
 由于网络上大部分资料都是在 Linux 上配置并安装 Jekyll ，看起来操作也比较简单，而我作为一个强迫症，已经将自己 Github 的库克隆在 Windows 的本地文件里，不想再改位置，于是我硬着头皮一边查资料，一边尝试将 Jekyll 安装在 Window 系统上。
 
