@@ -48,9 +48,10 @@ tags: C++ test
 那首先，根据教程，运行 Jekyll 所需的环境如下：
 
 >Ruby
->Ruby Gems
->NodeJS或其他 JavaScript 运行环境
->Python2.7(或2.7以上版本）
+
+Ruby Gems
+NodeJS或其他 JavaScript 运行环境
+Python2.7(或2.7以上版本）
 
 由于网络上大部分资料都是在 Linux 上配置并安装 Jekyll ，看起来操作也比较简单，而我作为一个强迫症，已经将自己 Github 的库克隆在 Windows 的本地文件里，不想再改位置，于是我硬着头皮一边查资料，一边尝试将 Jekyll 安装在 Window 系统上。
 
@@ -68,7 +69,7 @@ tags: C++ test
 
 如果完成了上面环境的配置，打开命令行，执行`gem install jekyll`，~~然后保佑安装过程一切正常，~~安装成功后执行`jekyll -v`检测是否安装成功，如果成功显示版本，那么恭喜你，搭建博客过程中最让人云里雾里的一部分终于完成了QAQ。
 
-```
+```C
 C:\Users\34961>jekyll -v
 jekyll 3.8.6
 ```
@@ -78,7 +79,7 @@ jekyll 3.8.6
 - [我使用的博客模板](https://github.com/kaeyleo/jekyll-theme-H2O#%E6%A0%87%E7%AD%BE)
 
  jekyll 的目录结构大概是这样的：
-```
+```C
 .
 ├── assets # 存放用于线上环境的静态资源，比如我们想放在博客上的图片之类
 ├── _config.yml # 配置文件，我们通过修改这里的参数改造博客
@@ -109,7 +110,7 @@ jekyll 3.8.6
 
 为了看到博客呈现出来的效果，就要用上我们上一步安装的 Jekyll，先打开命令行，将路径修改至**博客模板所在路径**，执行命令` jekyll server`，复制 http://127.0.0.1:4000/ 到浏览器打开，就能看见本地的博客了。
 
-```
+```C
 PS E:\Github\437436999.github.io> jekyll server
 Configuration file: E:/Github/437436999.github.io/_config.yml
             Source: E:/Github/437436999.github.io
