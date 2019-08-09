@@ -18,6 +18,7 @@ baseurl: ''
 nav:
   home: '/'
   tags: '/tags.html'
+# about: '/404.html'
 
 # Footer
 footer:
@@ -26,7 +27,7 @@ footer:
 # Author 配置博主信息
 author: 'Max.C'
 nickname: 'Max.C'
-bio: '~~~'
+bio: '————'
 avatar: '/assets/img/profile.png'
 
 # Search
@@ -57,6 +58,8 @@ postPatterns: 'circuitBoard'
 # url: email, weibo, zhihu, twitter, instagram, juejin, github, douban, facebook, dribble, uicn, jianshu, medium, linkedin
 sns:
   github: '//github.com/437436999'
+  zhihu: '//www.zhihu.com/people/chen-chen-73-36/activities'
+  email: '437436999@qq.com'
 
 # Tags 设置标签
 recommend-tags: true # whether or not display recommend-tags on the sidebar
@@ -69,7 +72,7 @@ exclude: ['node_modules', 'dev', 'package.json', 'gulpfile.js', '.gitignore', 'R
 
 # Markdown
 markdown: kramdown
-highlighter: rouge
+highlighter: pygments
 kramdown:
   input: GFM
 
