@@ -3,6 +3,7 @@
 {% include post-head.html %}
 
 <body>
+
   <!--[if lt IE 10]>
 <div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
 <![endif]-->
@@ -46,6 +47,8 @@
       <div class="social-share"></div>
     </div>
     {% endif %}
+	
+
   </div>
 
   <section class="author-detail">
@@ -68,6 +71,25 @@
         {% endfor %}
       </ul>
       {% endif %}
+	  
+	  
+
+
+	  <div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+    owner: '437436999',
+    repo: '437436999.github.io',
+    oauth: {
+        client_id: 'ea779f95a2197d36e40c',
+        client_secret: '1798609343694e7927ae7c2fb8c0690095376093',
+    },
+});
+gitment.render('gitmentContainer');
+</script>
+	  
     </section>
     <section class="post-footer-item read-next">
       {% if page.next.url %}
@@ -106,6 +128,8 @@
   </section>
 
   {% include footer.html %}
+  
+  
 
   <script src="{{ "/assets/js/social-share.min.js" | relative_url }}"></script>
   <script>
@@ -141,6 +165,8 @@
     })();
   </script>
   {% endif %}
+  
+
 
   <script src="{{ "/assets/js/prism.js" | relative_url }}"></script>
   <script src="{{ "/assets/js/index.min.js" | relative_url }}"></script>
