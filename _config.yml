@@ -1,87 +1,109 @@
-﻿# Site settings 配置站点
-title: 'Max.C的博客' # 博客网站标题
-description: '很高兴能在这里与你分享。' # 站点描述
-keyword: 'C++,中山大学 ' # 网站关键词
-url: '' # your host
+# Site settings
+title: And we could run away.
+SEOTitle: Max.C的博客
+header-img: img/bg.jpg
+email: 437436999@qq.com
+description: Before the light of day.
+keyword: "Max.C, C++, 中山大学, steam"
+url: "https://437436999.github.io/"          # your host, for absolute URL
+baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
+github_repo: "https://github.com/437436999/437436999.github.io" # you code repository
 
-# when build blog on server, if you don't need baseurl, you should leave this value blank.
-# 在服务器上建站时，如果你不需要子域名，请将这一格留空
-# if you're using GitHub Pages, set baseurl to your blog's .
-# 如果你在使用 GitHub Pages, 请将 baseurl 设置为你的网址的子域名
-# for example, if your site is "kaeyleo.github.io", then this url should leave blank.
-# 例如，当你的域名是 "kaeyleo.github.io"  时，这个 url 需要留空
-# but if your created a repo named "myblog", and the site is "kaeyleo.github.io/myblog", change baseurl to '/myblog'
-# 但是，如果你创建了一个叫 "myblog" 的网站，此时网址会变成 "kaeyleo.github.io/myblog" ，这时再将 baseurl 设置为 '/myblog'
-baseurl: ''
+# Sidebar settings
+sidebar: true                           # whether or not using Sidebar.
+sidebar-about-description: "QVQ"
+# sidebar-avatar:       # use absolute URL, seeing it's used in both `/` and `/about/`
 
-# Navigation links
-nav:
-  home: '/'
-  tags: '/tags.html'
-# about: '/404.html'
 
-# Footer
-footer:
-  since: 2017
 
-# Author 配置博主信息
-author: 'Max.C'
-nickname: 'Max.C'
-bio: '————'
-avatar: '/assets/img/profile.png'
+# SNS settings
+RSS: false
+# weibo_username:     qiubaiying
+zhihu_username:     Max.C
+github_username:    437436999
+#facebook_username:  baiying.qiu.7
+#jianshu_username:   e71990ada2fd
+#twitter_username:   qiubaiying
 
-# Search
-search: true
 
-# Night mode
-nightMode: false
 
-# Comments 评论功能
-comments:
-  disqus: false
-  disqus_url: ''
-
-# MathJax 公式支持 by Ray-Eldath
-mathjax: true
-
-# Share
-social-share: true
-social-share-items: ['wechat', 'weibo', 'douban', 'twitter']
-
-# theme color 主题皮肤
-theme-color: 'default'  # pink or default
-
-# Post header background patterns (when the post no cover): circuitBoard, overlappingCircles, food, glamorous, ticTacToe, seaOfClouds
-postPatterns: 'circuitBoard'
-
-# SNS settings 配置社交网站
-# url: email, weibo, zhihu, twitter, instagram, juejin, github, douban, facebook, dribble, uicn, jianshu, medium, linkedin
-sns:
-  github: '//github.com/437436999'
-  zhihu: '//www.zhihu.com/people/chen-chen-73-36/activities'
-  email: '437436999@qq.com'
-
-# Tags 设置标签
-recommend-tags: true # whether or not display recommend-tags on the sidebar
-recommend-condition-size: 12 # a tag will be recommended if the size of it is more than this value
 
 # Build settings
-paginate: 6
-paginate_path: 'page:num'
-exclude: ['node_modules', 'dev', 'package.json', 'gulpfile.js', '.gitignore', 'README.md']
+# from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
+permalink: pretty
+paginate: 10
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
 
-# Markdown
+
+
+# Gems
+# from PR#40, to support local preview for Jekyll 3.0
+gems: [jekyll-paginate]
+
+
+
+
+# Markdown settings
+# replace redcarpet to kramdown,
+# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
+# document: http://jekyllrb.com/docs/configuration/#kramdown
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 kramdown:
-  input: GFM
+  input: GFM                            # use Github Flavored Markdown !important
 
-# RSS
-RSS: false
 
-# Permalink
-# See: https://github.com/kaeyleo/jekyll-theme-H2O/issues/35
-permalink: /:year/:month/:day/:title.html
 
-# Plugins
-plugins: [jekyll-paginate]
+# 评论系统
+# Disqus（https://disqus.com/）
+# disqus_username: V0n
+
+# Gitalk
+#gitalk:
+#  enable: true    #是否开启Gitalk评论
+#  clientID:          6c1a55525b29dba3d057 #生成的clientID
+#  clientSecret:  ca45f222ae4c592a1ca7761013f8aff3218c92a4   #生成的clientSecret
+#  repo: VonLYC.github.io    #仓库名称
+#  owner: VonLYC    #github用户名
+#  admin: VonLYC
+#  distractionFreeMode: true #是否启用类似FB的阴影遮罩
+
+
+# 统计
+
+# Analytics settings
+# Baidu Analytics
+# ba_track_id: b50bf2b12b5338a1845e33832976fd68
+
+# Google Analytics
+# ga_track_id: 'UA-90855596-1'            # Format: UA-xxxxxx-xx
+# ga_domain: qiubaiying.top               # 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
+
+
+
+
+
+# Featured Tags
+featured-tags: true                     # 是否使用首页标签
+featured-condition-size: 0              # 相同标签数量大于这个数，才会出现在首页
+
+
+
+# Progressive Web Apps
+chrome-tab-theme-color: "#000000"
+service-worker: true
+
+
+
+# Friends
+friends: [
+     {
+        title: "SuMei's Blog",
+        href: "https://wsbfdzz.github.io/"
+     },
+     {
+        title: "Ender's Blog",
+        href: "https://ender-coder.github.io/"
+     }
+]
