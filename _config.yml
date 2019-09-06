@@ -1,9 +1,9 @@
 # Site settings
-title: And we could run away.
+title: Max.C
 SEOTitle: Max.C的博客
 header-img: img/bg.jpg
 email: 437436999@qq.com
-description: Before the light of day.
+description: And we could run away.Before the light of day.
 keyword: "Max.C, C++, 中山大学, steam"
 url: "https://437436999.github.io/"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
@@ -11,15 +11,15 @@ github_repo: "https://github.com/437436999/437436999.github.io" # you code repos
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "QVQ"
-# sidebar-avatar:       # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-about-description: "天道酬勤"
+sidebar-avatar: /img/profile.png      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
 # SNS settings
 RSS: false
 # weibo_username:     qiubaiying
-zhihu_username:     Max.C
+zhihu_username:     437436999
 github_username:    437436999
 #facebook_username:  baiying.qiu.7
 #jianshu_username:   e71990ada2fd
