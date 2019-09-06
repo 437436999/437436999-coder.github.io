@@ -13,9 +13,10 @@ tags: C++ test
 
 作为测试的第一篇博客，惯例Hello World，顺便熟悉一下`markdown`语法。
 
-``` cpp
+``` c
 
 #include<iostream>
+
 using namespace std;
 
 int main(){
