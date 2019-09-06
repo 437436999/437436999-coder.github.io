@@ -36,11 +36,11 @@ tags:
 ### 1. 创建一个 Github 库并开启 Github Pages
 首先我们用自己的 Github 账号创建一个新的库（repository），这个库的名称有固定的格式： `username.github.io`，其中 `username` 必须是 Github 账户的用户名，`.github.io` 是固定的，这个地址将会成为个人站点的网站地址。另外，我们可以勾选`Initialize this repository with a README`，让仓库自动创建一个 `README.md` 文件。
 
-![我创建的 Github 库](/assets/post_img/2019-08-08/微信截图_20190808185009.png)
+![我创建的 Github 库](/assets/post_img/2019-08-08/1.png)
 
 创建完成后，进入所创建的库，在`settings`页面找到`GitHub Pages`进行设置，如果你的库有按照上述方式进行命名，则它会自动进行设置，设置成功后会该页面出现绿色的提示，成功后可选择 `Choose a theme` 选择一个主题（默认的主题比较少，我们暂时先选一个）。
 
-![GitHub Pages设置](/assets/post_img/2019-08-08/微信截图_20190808185459.png)
+![GitHub Pages设置](/assets/post_img/2019-08-08/2.png)
 
 到这一步，我们就成功完成了 Github Pages 的配置，接下来我们就需要安装 Jekyll ，上网找一个 Jekyll 的博客模板，再将自己修改后的模板上传至这个库中就可以完成我们的个人博客了。
 
@@ -65,7 +65,7 @@ tags:
 
 下载 Ruby 时，如果选择的是 WITH DEVKIT 版本，可以直接安装下载的文件，不必执行上面的教程里 **安装Ruby DevKit** 这一项。
 
-![](/assets/post_img/2019-08-08/微信截图_20190808220740.png)
+![](/assets/post_img/2019-08-08/3.png)
 
 安装 Ruby 时，一开始因为不想装在C盘我就更改了安装路径，结果不知道出于什么原因，执行`gem install jekyll`指令时总会出错，最后还是老老实实安装在了默认安装路径。
 
@@ -90,7 +90,7 @@ jekyll 3.8.6
 - [我使用的博客模板](https://github.com/kaeyleo/jekyll-theme-H2O#%E6%A0%87%E7%AD%BE)
 
  jekyll 的目录结构大概是这样的：
-```cmd
+```c
 .
 ├── assets # 存放用于线上环境的静态资源，比如我们想放在博客上的图片之类
 ├── _config.yml # 配置文件，我们通过修改这里的参数改造博客
@@ -124,7 +124,7 @@ jekyll 3.8.6
 
 为了看到博客呈现出来的效果，就要用上我们上一步安装的 Jekyll，先打开命令行，将路径修改至**博客模板所在路径**，执行命令` jekyll server`，复制 http://127.0.0.1:4000/ 到浏览器打开，就能看见本地的博客了。
 
-```cmd
+```cpp
 PS E:\Github\437436999.github.io> jekyll server
 Configuration file: E:/Github/437436999.github.io/_config.yml
             Source: E:/Github/437436999.github.io
@@ -147,7 +147,7 @@ Configuration file: E:/Github/437436999.github.io/_config.yml
 
 文件成功上传之后，在 Github 库页面就可以看到你的博客文件了，这时只要访问`username.github.io`，你就能看到自己搭建的个人博客了。
 
-![我的博客所在的Github库](/assets/post_img/2019-08-08/微信截图_20190808205432.png)
+![我的博客所在的Github库](/assets/post_img/2019-08-08/4.png)
 
 ## 参考资料
 本次博客的搭建主要参考了以下内容，感谢作者们~
