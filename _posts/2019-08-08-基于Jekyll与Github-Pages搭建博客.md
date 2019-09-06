@@ -3,7 +3,7 @@ layout:     post
 title:     '基于Jekyll与Github Pages搭建博客'          
 date:       2019-08-08                   
 author:     Max.C                    
-header-img: /assets/post_img/2019-08-08/cover1.png     
+header-img: '/assets/post_img/2019-08-08/cover1.png'   
 catalog: true                           
 tags:                                   
     - Github
