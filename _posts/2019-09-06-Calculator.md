@@ -122,10 +122,15 @@ CString cs=_T("this is cstring"); //例子
 `CString`类有如下成员函数可以供我们使用：
 
 1） CString类的构造函数
+
 CString(const CString& stringSrc);
+
 将一个已经存在的CString对象stringSrc的内容拷贝到该CString对象。
+
 CString(TCHAR ch,int nLength = 1）;
+
 使用此函数构造的CString对象中将含有nLength个重复的ch字符。
+
 例如：
 
 ```cpp
@@ -210,10 +215,21 @@ int n2 = str.Delete（1,2）； // str为"jhuomj"，n2为6
 int n3 = str.Remove(_T('j')); // str为"ihuom"，n3为1
 ```
 
-8）CString类的格式化字符串方法
+7）CString类的格式化字符串方法
 使用CString类的Format成员函数可以将int、short、long、float、double等数据类型格式化为字符串对象。
 void __cdecl Format(PCXSTR pszFormat,[,argument]...);
 参数pszFormat为格式控制字符串；参数argument可选，为要格式化的数据，一般每个argument在pszFormat中都有对应的表示其类型的子字符串，int型的argument对应的应该是"%d"，float型的应对应"%f"，等等。
+例如：
+
+```cpp
+CString str;
+int a = 1;
+float b = 2.3f;
+str.Format(_T("a=%d,b=%f"),a,b); // str为"a=1,b=2.300000"
+```
+
+8）CString类的长度、字符操作
+使用GetLength()可以得到CString对象的字符个数，使用GetAt(int)函数通过下标访问字符串中字符，可访问范围为0~GetLength()-1。
 例如：
 
 ```cpp
