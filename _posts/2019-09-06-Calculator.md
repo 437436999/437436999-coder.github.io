@@ -122,11 +122,12 @@ CString cs=_T("this is cstring"); //例子
 `CString`类有如下成员函数可以供我们使用：(以下内容来自百度百科)
 
 >1） CString类的构造函数<br>
-CString(const CString& stringSrc);<br>
+`CString(const CString& stringSrc);`<br>
 将一个已经存在的CString对象stringSrc的内容拷贝到该CString对象。<br>
 CString(TCHAR ch,int nLength = 1）;<br>
 使用此函数构造的CString对象中将含有nLength个重复的ch字符。<br>
 例如：
+
 ```cpp
 CString str1(_T(jizhuomi)); // 将常量字符串拷贝到str1
 
