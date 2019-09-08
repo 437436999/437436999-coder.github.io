@@ -120,6 +120,7 @@ CString cs=_T("this is cstring"); //例子
 ```
 
 `CString`类有如下成员函数可以供我们使用：
+
 >1） CString类的构造函数
 CString(const CString& stringSrc);
 将一个已经存在的CString对象stringSrc的内容拷贝到该CString对象。
@@ -128,9 +129,12 @@ CString(TCHAR ch,int nLength = 1）;
 例如：
 ```cpp
 CString str1(_T(jizhuomi)); // 将常量字符串拷贝到str1
+
 CString str2(str1）； // 将str1的内容拷贝到str2
+
 CString(TCHAR ch,int nLength = 1）;
 CString str(_T('w'),3）； // str为"www"
+
 ```
 
 >2）CString类的大小写转换及顺序转换函数
@@ -141,8 +145,11 @@ CString& MakeReverse(); 将字符串中所有字符的顺序颠倒。
 ```cpp
 CString str(_T("JiZhuoMi"));
 str.MakeLower(); // str为"jizhuomi"
+
 str.MakeUpper(); // str为"JIZHUOMI"
+
 str.MakeReverse(); // str为"IMOUHZIJ"
+
 ```
 
 >3）CString对象的连接
@@ -150,7 +157,9 @@ str.MakeReverse(); // str为"IMOUHZIJ"
 例如：
 ```cpp
 CString str(_T("jizhuomi")); // str内容为"jizhuomi"
+
 str = _T("www") + str + _T("-"); // str为"wwwjizhuomi-"
+
 str += _T("com"); // str为wwwjizhuomi-com
 ```
 
@@ -171,7 +180,9 @@ int ReverseFind(XCHAR ch) const throw();
 ```cpp
 CString str = _T("jizhuomi");
 int nIndex1 = str.Find(_T("zh")); // nIndex1的值为2
+
 int nIndex2 = str.FindOneOf(_T("mui")); // nIndex2的值为1
+
 int nIndex3 = str.ReverseFind(_T('i')); // nIndex3的值为7
 ```
 
@@ -189,7 +200,9 @@ int Remove(XCHAR chRemove);
 ```cpp
 CString str = _T("jizhuomi");
 int n1 = str.Replace(_T('i'),_T('j')); // str为"jjzhuomj"，n1为2
+
 int n2 = str.Delete（1,2）； // str为"jhuomj"，n2为6
+
 int n3 = str.Remove(_T('j')); // str为"ihuom"，n3为1
 ```
 
@@ -203,6 +216,7 @@ CString str;
 int a = 1;
 float b = 2.3f;
 str.Format(_T("a=%d,b=%f"),a,b); // str为"a=1,b=2.300000"
+
 ```
 
 ***
