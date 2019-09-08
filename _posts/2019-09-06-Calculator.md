@@ -216,7 +216,8 @@ CString str;
 int a = 1;
 float b = 2.3f;
 str.Format(_T("a=%d,b=%f"),a,b); // str为"a=1,b=2.300000"
-
 ```
+
+
 
 ***
