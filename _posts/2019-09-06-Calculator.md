@@ -121,16 +121,11 @@ CString cs=_T("this is cstring"); //例子
 
 `CString`类有如下成员函数可以供我们使用：
 
-1） CString类的构造函数
-
-CString(const CString& stringSrc);
-
-将一个已经存在的CString对象stringSrc的内容拷贝到该CString对象。
-
-CString(TCHAR ch,int nLength = 1）;
-
-使用此函数构造的CString对象中将含有nLength个重复的ch字符。
-
+1） CString类的构造函数<br>
+CString(const CString& stringSrc);<br>
+将一个已经存在的CString对象stringSrc的内容拷贝到该CString对象。<br>
+CString(TCHAR ch,int nLength = 1）;<br>
+使用此函数构造的CString对象中将含有nLength个重复的ch字符。<br>
 例如：
 
 ```cpp
@@ -233,10 +228,10 @@ str.Format(_T("a=%d,b=%f"),a,b); // str为"a=1,b=2.300000"
 例如：
 
 ```cpp
-CString str;
-int a = 1;
-float b = 2.3f;
-str.Format(_T("a=%d,b=%f"),a,b); // str为"a=1,b=2.300000"
+CString str=_T("Hello");
+int n=str.GetLength(); //n=5
+
+TCHAR CH=str.GetAt(str.GetLength()-1); //CH='o'
 ```
 
 
