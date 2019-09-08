@@ -113,6 +113,8 @@ tags: C++ MFC
 
 ### 3、计算器的代码实现
 
+#### （1）CString类
+
 在MFC代码中，数值类型与C++相同，但输入输出的字符类型为`TCHAR`，字符串类型为`CString`，可以利用宏定义`_T("字符串常量")`将C字符串转换为`CString`，利用宏定义`_T('字符常量')`将C字符转换为`TCHAR`。
 
 ```cpp
@@ -234,6 +236,32 @@ int n=str.GetLength(); //n=5
 TCHAR CH=str.GetAt(str.GetLength()-1); //CH='o'
 ```
 
+#### （2）文本框输入输出函数
+
+为了实现计算器功能，我们自然需要往文本框输入文本、向文本框读取文本，这些可以用函数`GetDlgItemText`和`SetDlgltemText`实现。
+
+`int GetDlgItemText( int nID, CString& rString ) const`<br>
+调用`GetDlgItemText`可以获得与文本框中的标题或文本，参数nID指定了要获取其标题的控件的整数标识符（即文本框的ID）， rString是对一个CString对象的引用。<br>
+如果函数调用成功，返回值为拷贝到缓冲区中的 TCHAR 字符个数（不包括结束空字符）；如果函数调用失败，返回值为 0 。
+
+`BOOL SetDlgltemText(int nlDDlgltem,LPCTSTR IpString);`<br>
+调用`SetDlgItemText`可设置对话框中控件的文本和标题，参数nlDDlgltem标识带有将被设置的标题和文本的控件（即文本框的ID），IpString指向一个以NULL结尾的字符串指针，该字符串指针包含了将被复制到控件的文本。<br>
+返回值：如果函数调用成功，则返回值为非零值。如果函数调用失败，则返回值为零。
+
+回到我们设计的计算器，以按钮1为例，我们需=想要实现的是：按下按钮1，文本框中的字符串在最后一位增加一个1，那么我们可以这么实现：
+
+```cpp
+/
+void CcalculatorDlg::OnBnClickedButton1()//按钮1的ID为Button1
+
+{
+	// TODO: 在此添加控件通知处理程序代码
+	
+	CString cs;
+	GetDlgItemText(IDC_EDIT1, cs);
+	SetDlgItemText(IDC_EDIT1, cs + _T("1"));
+}
+```
 
 
 ***
