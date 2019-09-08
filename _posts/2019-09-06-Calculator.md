@@ -113,6 +113,96 @@ tags: C++ MFC
 
 ### 3、计算器的代码实现
 
+在MFC代码中，数值类型与C++相同，但输入输出的字符类型为`TCHAR`，字符串类型为`CString`，可以利用宏定义`_T("字符串常量")`将C字符串转换为`CString`，利用宏定义`_T('字符常量')`将C字符转换为`TCHAR`。
 
+```cpp
+CString cs=_T("this is cstring"); //例子
+```
+
+`CString`类有如下成员函数可以供我们使用：
+>1） CString类的构造函数
+CString(const CString& stringSrc);
+将一个已经存在的CString对象stringSrc的内容拷贝到该CString对象。
+CString(TCHAR ch,int nLength = 1）;
+使用此函数构造的CString对象中将含有nLength个重复的ch字符。
+例如：
+```cpp
+CString str1(_T(jizhuomi)); // 将常量字符串拷贝到str1
+CString str2(str1）； // 将str1的内容拷贝到str2
+CString(TCHAR ch,int nLength = 1）;
+CString str(_T('w'),3）； // str为"www"
+```
+
+>2）CString类的大小写转换及顺序转换函数
+CString& MakeLower(); 将字符串中的所有大写字符转换为小写字符。
+CString& MakeUpper(); 将字符串中的所有小写字符转换为大写字符。
+CString& MakeReverse(); 将字符串中所有字符的顺序颠倒。
+例如：
+```cpp
+CString str(_T("JiZhuoMi"));
+str.MakeLower(); // str为"jizhuomi"
+str.MakeUpper(); // str为"JIZHUOMI"
+str.MakeReverse(); // str为"IMOUHZIJ"
+```
+
+>3）CString对象的连接
+多个CString对象的连接可以通过重载运算符+、+=实现。
+例如：
+```cpp
+CString str(_T("jizhuomi")); // str内容为"jizhuomi"
+str = _T("www") + str + _T("-"); // str为"wwwjizhuomi-"
+str += _T("com"); // str为wwwjizhuomi-com
+```
+
+>4）CString对象的比较
+CString对象的比较可以通过==、！=、<；、>；、<=、>=等重载运算符实现，也可以使用Compare和CompareNoCase成员函数实现。
+int Compare(PCXSTR psz) const;
+将该CString对象与psz字符串比较，如果相等则返回0，如果小于psz则返回值小于0，如果大于psz则返回值大于0。
+
+>5）CString对象字符串的查找操作
+int Find(PCXSTR pszSub,int iStart=0) const throw();
+int Find(XCHAR ch,int iStart=0) const throw();
+在CString对象字符串的iStart索引位置开始，查找子字符串pszSub或字符ch第一次出现的位置，如果没有找到则返回-1。
+int FindOneOf(PCXSTR pszCharSet) const throw();
+查找pszCharSet字符串中的任意字符，返回第一次出现的位置，找不到则返回-1。
+int ReverseFind(XCHAR ch) const throw();
+从字符串末尾开始查找指定的字符ch，返回其位置，找不到则返回-1。这里要注意，尽管是从后向前查找，但是位置的索引还是要从开始算起。
+例如：
+```cpp
+CString str = _T("jizhuomi");
+int nIndex1 = str.Find(_T("zh")); // nIndex1的值为2
+int nIndex2 = str.FindOneOf(_T("mui")); // nIndex2的值为1
+int nIndex3 = str.ReverseFind(_T('i')); // nIndex3的值为7
+```
+
+
+>6）CString类对象字符串的替换与删除
+int Replace(PCXSTR pszOld,PCXSTR pszNew);
+用字符串pszNew替换CString对象中的子字符串pszOld，返回替换的字符个数。
+int Replace(XCHAR chOld,XCHAR chNew);
+用字符chNew替换CString对象中的字符chOld，返回替换的字符个数。
+int Delete(int iIndex,int nCount = 1）；
+从字符串中删除iIndex位置开始的nCount个字符，返回删除操作后的字符串的长度。
+int Remove(XCHAR chRemove);
+删除字符串中的所有由chRemove指定的字符，返回删除的字符个数。
+例如：
+```cpp
+CString str = _T("jizhuomi");
+int n1 = str.Replace(_T('i'),_T('j')); // str为"jjzhuomj"，n1为2
+int n2 = str.Delete（1,2）； // str为"jhuomj"，n2为6
+int n3 = str.Remove(_T('j')); // str为"ihuom"，n3为1
+```
+
+>8）CString类的格式化字符串方法
+使用CString类的Format成员函数可以将int、short、long、float、double等数据类型格式化为字符串对象。
+void __cdecl Format(PCXSTR pszFormat,[,argument]...);
+参数pszFormat为格式控制字符串；参数argument可选，为要格式化的数据，一般每个argument在pszFormat中都有对应的表示其类型的子字符串，int型的argument对应的应该是"%d"，float型的应对应"%f"，等等。
+例如：
+```cpp
+CString str;
+int a = 1;
+float b = 2.3f;
+str.Format(_T("a=%d,b=%f"),a,b); // str为"a=1,b=2.300000"
+```
 
 ***
