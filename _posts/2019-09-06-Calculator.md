@@ -248,20 +248,68 @@ TCHAR CH=str.GetAt(str.GetLength()-1); //CH='o'
 调用`SetDlgItemText`可设置对话框中控件的文本和标题，参数nlDDlgltem标识带有将被设置的标题和文本的控件（即文本框的ID），IpString指向一个以NULL结尾的字符串指针，该字符串指针包含了将被复制到控件的文本。<br>
 返回值：如果函数调用成功，则返回值为非零值。如果函数调用失败，则返回值为零。
 
-回到我们设计的计算器，以按钮1为例，我们需=想要实现的是：按下按钮1，文本框中的字符串在最后一位增加一个1，那么我们可以这么实现：
+#### （3）函数功能设计
+
+回到我们设计的计算器，我们需要实现的功能分为以下几种：
+1. 数字0~9输入。
+2. 加减乘除符号输入。
+3. 括号的输入.
+4. 删除符号。
+5. 等号完成计算。
+
+数字按钮0~9的实现方式都是一样的，以按钮1为例，我们想要实现的是：按下按钮1，文本框中的字符串在最后一位增加一个1，那么我们可以这么实现：
 
 ```cpp
-/
-void CcalculatorDlg::OnBnClickedButton1()//按钮1的ID为Button1
-
+/*
+按钮1的ID为Button1，文本框的ID为IDC_EDIT1
+*/
+void CcalculatorDlg::OnBnClickedButton1()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	
 	CString cs;
-	GetDlgItemText(IDC_EDIT1, cs);
-	SetDlgItemText(IDC_EDIT1, cs + _T("1"));
+	GetDlgItemText(IDC_EDIT1, cs); //读取当前文本框中的内容
+	
+	SetDlgItemText(IDC_EDIT1, cs + _T("1")); //将内容最后加上"1"并写入文本框
+	
 }
 ```
+
+加减乘除符号的输入，我们不能像数字那样点击即可输入，因为算式`1+++++2`显然是不成立的。运算符号需要在数字或者右括号后才能输入：`(2+4)-2`；除此之外，减号`-`还能当作负号使用，那么负号还能作为第一个字符、在左括号后输入：`-2+(-1)`。根据我们的需求，我们可以写出以下代码，其中`+×÷`实现方式相同，`-`为另一种实现方式：
+
+```cpp
+/*
+按钮+的ID为b，按钮-的ID为c，文本框的ID为IDC_EDIT1
+*/
+void CcalculatorDlg::OnBnClickedButtonb() //加号操作
+
+{
+	CString cs;
+	GetDlgItemText(IDC_EDIT1, cs);
+	if (cs.GetLength()!=0 
+	&& (cs.GetAt(cs.GetLength() - 1) >= _T('0') && cs.GetAt(cs.GetLength() - 1) <= _T('9') 
+	|| cs.GetAt(cs.GetLength() - 1) == _T(')'))) 
+	{
+		SetDlgItemText(IDC_EDIT1, cs + _T("+")); 
+	}
+	return;
+}
+
+void CcalculatorDlg::OnBnClickedButtonc() //减号操作
+
+{
+	CString cs;
+	GetDlgItemText(IDC_EDIT1, cs);
+	if (cs.GetLength() == 0
+		|| (cs.GetAt(cs.GetLength() - 1) >= _T('0') && cs.GetAt(cs.GetLength() - 1) <= _T('9'))
+		|| cs.GetAt(cs.GetLength() - 1) == _T('(') || cs.GetAt(cs.GetLength() - 1) == _T(')')) {
+		SetDlgItemText(IDC_EDIT1, cs + _T("-"));
+	}
+	return;
+}
+
+```
+
 
 
 ***
