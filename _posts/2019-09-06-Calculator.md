@@ -85,13 +85,13 @@ tags: C++ MFC
 
 ![](/assets/post_img/2019-09-06/13.png)
 
-打开资源视图（Ctrl+Shift+E）,在空白处右键->添加资源->Menu->新建资源。
+打开资源视图（Ctrl+Shift+E）,在空白处**右键->添加资源->Menu->新建资源**。
 
 ![](/assets/post_img/2019-09-06/14.png)
 
 创建之后，找到`工程名.rc\ Menu\ IDR_MENU1`，双击打开，即可进行菜单的编辑，编辑菜单名称的操作这里不多赘述。
 
-菜单编辑完成后，按Ctrl+F5进行调试时会发现调试的主窗口并没有菜单。此时，我们需要回到我们的`工程名.rc\ Dialog\ IDD_工程名_DIGLOG`界面（即编辑主窗口的界面），选择属性->杂项->MENU，在下拉菜单中选择我们新建的菜单的ID，再次进行调试，会发现菜单成功显示出来了。
+菜单编辑完成后，按Ctrl+F5进行调试时会发现调试的主窗口并没有菜单。此时，我们需要回到我们的`工程名.rc\ Dialog\ IDD_工程名_DIGLOG`界面（即编辑主窗口的界面），选择**属性->杂项->MENU**，在下拉菜单中选择我们新建的菜单的ID，再次进行调试，会发现菜单成功显示出来了。
 
 ![](/assets/post_img/2019-09-06/15.png)
 
@@ -126,7 +126,7 @@ CString cs=_T("this is cstring"); //例子
 >1） CString类的构造函数<br>
 `CString(const CString& stringSrc);`<br>
 将一个已经存在的CString对象stringSrc的内容拷贝到该CString对象。<br>
-CString(TCHAR ch,int nLength = 1）;<br>
+`CString(TCHAR ch,int nLength = 1）;`<br>
 使用此函数构造的CString对象中将含有nLength个重复的ch字符。<br>
 例如：
 
@@ -141,9 +141,9 @@ CString str(_T('w'),3); // str为"www"
 ```
 
 >2）CString类的大小写转换及顺序转换函数<br>
-CString& MakeLower(); 将字符串中的所有大写字符转换为小写字符。<br>
-CString& MakeUpper(); 将字符串中的所有小写字符转换为大写字符。<br>
-CString& MakeReverse(); 将字符串中所有字符的顺序颠倒。<br>
+`CString& MakeLower();` 将字符串中的所有大写字符转换为小写字符。<br>
+`CString& MakeUpper(); `将字符串中的所有小写字符转换为大写字符。<br>
+`CString& MakeReverse();` 将字符串中所有字符的顺序颠倒。<br>
 例如：
 
 ```cpp
@@ -169,17 +169,17 @@ str += _T("com"); // str为wwwjizhuomi-com
 ```
 
 >4）CString对象的比较<br>
-CString对象的比较可以通过==、！=、<；、>；、<=、>=等重载运算符实现，也可以使用Compare和CompareNoCase成员函数实现。<br>
-int Compare(PCXSTR psz) const;<br>
+CString对象的比较可以通过==、！=、<；、>；、<=、>=等重载运算符实现，也可以使用`Compare`和`CompareNoCase`成员函数实现。<br>
+`int Compare(PCXSTR psz) const;`<br>
 将该CString对象与psz字符串比较，如果相等则返回0，如果小于psz则返回值小于0，如果大于psz则返回值大于0。
 
 >5）CString对象字符串的查找操作<br>
-int Find(PCXSTR pszSub,int iStart=0) const throw();<br>
-int Find(XCHAR ch,int iStart=0) const throw();<br>
+`int Find(PCXSTR pszSub,int iStart=0) const throw();`<br>
+`int Find(XCHAR ch,int iStart=0) const throw();`<br>
 在CString对象字符串的iStart索引位置开始，查找子字符串pszSub或字符ch第一次出现的位置，如果没有找到则返回-1。<br>
-int FindOneOf(PCXSTR pszCharSet) const throw();<br>
+`int FindOneOf(PCXSTR pszCharSet) const throw();`<br>
 查找pszCharSet字符串中的任意字符，返回第一次出现的位置，找不到则返回-1。
-int ReverseFind(XCHAR ch) const throw();<br>
+`int ReverseFind(XCHAR ch) const throw();`<br>
 从字符串末尾开始查找指定的字符ch，返回其位置，找不到则返回-1。这里要注意，尽管是从后向前查找，但是位置的索引还是要从开始算起。<br>
 例如：
 
@@ -193,13 +193,13 @@ int nIndex3 = str.ReverseFind(_T('i')); // nIndex3的值为7
 ```
 
 >6）CString类对象字符串的替换与删除<br>
-int Replace(PCXSTR pszOld,PCXSTR pszNew);<br>
+`int Replace(PCXSTR pszOld,PCXSTR pszNew);`<br>
 用字符串pszNew替换CString对象中的子字符串pszOld，返回替换的字符个数。<br>
-int Replace(XCHAR chOld,XCHAR chNew);<br>
+`int Replace(XCHAR chOld,XCHAR chNew);`<br>
 用字符chNew替换CString对象中的字符chOld，返回替换的字符个数。<br>
-int Delete(int iIndex,int nCount = 1）；<br>
+`int Delete(int iIndex,int nCount = 1）;`<br>
 从字符串中删除iIndex位置开始的nCount个字符，返回删除操作后的字符串的长度。<br>
-int Remove(XCHAR chRemove);<br>
+`int Remove(XCHAR chRemove);`<br>
 删除字符串中的所有由chRemove指定的字符，返回删除的字符个数。<br>
 例如：
 
@@ -214,8 +214,8 @@ int n3 = str.Remove(_T('j')); // str为"ihuom"，n3为1
 
 >7）CString类的格式化字符串方法<br>
 使用CString类的Format成员函数可以将int、short、long、float、double等数据类型格式化为字符串对象。<br>
-void __cdecl Format(PCXSTR pszFormat,[,argument]...);<br>
-参数pszFormat为格式控制字符串；参数argument可选，为要格式化的数据，一般每个argument在pszFormat中都有对应的表示其类型的子字符串，int型的argument对应的应该是"%d"，float型的应对应"%f"，等等。<br>
+`void __cdecl Format(PCXSTR pszFormat,[,argument]...);`<br>
+参数`pszFormat`为格式控制字符串；参数`argument`可选，为要格式化的数据，一般每个a`rgument`在`pszFormat`中都有对应的表示其类型的子字符串，`int`型的`argument`对应的应该是`"%d"`，`float`型的应对应`"%f"`，等等。<br>
 例如：
 
 ```cpp
@@ -226,7 +226,7 @@ str.Format(_T("a=%d,b=%f"),a,b); // str为"a=1,b=2.300000"
 ```
 
 >8）CString类的长度、字符操作<br>
-使用GetLength()可以得到CString对象的字符个数，使用GetAt(int)函数通过下标访问字符串中字符，可访问范围为0~GetLength()-1。<br>
+使用`GetLength()`可以得到CString对象的字符个数，使用`GetAt(int)`函数通过下标访问字符串中字符，可访问范围为`0~GetLength()-1`。<br>
 例如：
 
 ```cpp
@@ -241,11 +241,11 @@ TCHAR CH=str.GetAt(str.GetLength()-1); //CH='o'
 为了实现计算器功能，我们自然需要往文本框输入文本、向文本框读取文本，这些可以用函数`GetDlgItemText`和`SetDlgltemText`实现。
 
 `int GetDlgItemText( int nID, CString& rString ) const`<br>
-调用`GetDlgItemText`可以获得与文本框中的标题或文本，参数nID指定了要获取其标题的控件的整数标识符（即文本框的ID）， rString是对一个CString对象的引用。<br>
-如果函数调用成功，返回值为拷贝到缓冲区中的 TCHAR 字符个数（不包括结束空字符）；如果函数调用失败，返回值为 0 。
+调用`GetDlgItemText`可以获得与文本框中的标题或文本，参数`nID`指定了要获取其标题的控件的整数标识符（即文本框的ID），` rString`是对一个`CString`对象的引用。<br>
+如果函数调用成功，返回值为拷贝到缓冲区中的`TCHAR`字符个数（不包括结束空字符）；如果函数调用失败，返回值为 0 。
 
 `BOOL SetDlgltemText(int nlDDlgltem,LPCTSTR IpString);`<br>
-调用`SetDlgItemText`可设置对话框中控件的文本和标题，参数nlDDlgltem标识带有将被设置的标题和文本的控件（即文本框的ID），IpString指向一个以NULL结尾的字符串指针，该字符串指针包含了将被复制到控件的文本。<br>
+调用`SetDlgItemText`可设置对话框中控件的文本和标题，参数`nlDDlgltem`标识带有将被设置的标题和文本的控件（即文本框的ID），`IpString`指向一个以`NULL`结尾的字符串指针，该字符串指针包含了将被复制到控件的文本。<br>
 返回值：如果函数调用成功，则返回值为非零值。如果函数调用失败，则返回值为零。
 
 #### （3）函数功能设计
@@ -318,7 +318,8 @@ void CcalculatorDlg::OnBnClickedButtonf() //左括号
 {
 	CString cs;
 	GetDlgItemText(IDC_EDIT1, cs);
-	if(cs.GetLength() == 0 || cs.GetAt(cs.GetLength() - 1) == _T('+') || cs.GetAt(cs.GetLength() - 1) == _T('-')
+	if(cs.GetLength() == 0 
+	|| cs.GetAt(cs.GetLength() - 1) == _T('+') || cs.GetAt(cs.GetLength() - 1) == _T('-')
 	|| cs.GetAt(cs.GetLength() - 1) == _T('×') || cs.GetAt(cs.GetLength() - 1) == _T('÷') 
 	|| cs.GetAt(cs.GetLength() - 1) == _T('('))
 		SetDlgItemText(IDC_EDIT1, cs + _T("("));
@@ -354,6 +355,6 @@ void CcalculatorDlg::OnBnClickedButton18()
 }
 ```
 
-等号按钮是计算器最核心
+等号按钮是计算器的核心，需要对文本框中的中缀表达式进行运算并得出结果：
 
 ***
