@@ -279,7 +279,7 @@ void CcalculatorDlg::OnBnClickedButton1()
 
 ```cpp
 /*
-按钮+的ID为b，按钮-的ID为c，文本框的ID为IDC_EDIT1
+按钮+的ID为b，按钮-的ID为c
 */
 void CcalculatorDlg::OnBnClickedButtonb() //加号操作
 
@@ -301,15 +301,59 @@ void CcalculatorDlg::OnBnClickedButtonc() //减号操作
 	CString cs;
 	GetDlgItemText(IDC_EDIT1, cs);
 	if (cs.GetLength() == 0
-		|| (cs.GetAt(cs.GetLength() - 1) >= _T('0') && cs.GetAt(cs.GetLength() - 1) <= _T('9'))
-		|| cs.GetAt(cs.GetLength() - 1) == _T('(') || cs.GetAt(cs.GetLength() - 1) == _T(')')) {
+	|| (cs.GetAt(cs.GetLength() - 1) >= _T('0') && cs.GetAt(cs.GetLength() - 1) <= _T('9'))
+	|| cs.GetAt(cs.GetLength() - 1) == _T('(') || cs.GetAt(cs.GetLength() - 1) == _T(')')) 
+	{
 		SetDlgItemText(IDC_EDIT1, cs + _T("-"));
 	}
 	return;
 }
-
 ```
 
+左右括号的输入要求不同，左括号不能在数字之后输入、也能作为第一个字符输入；右括号只能在数字、右括号之后输入，代码如下：
 
+```cpp
+void CcalculatorDlg::OnBnClickedButtonf() //左括号
+
+{
+	CString cs;
+	GetDlgItemText(IDC_EDIT1, cs);
+	if(cs.GetLength() == 0 || cs.GetAt(cs.GetLength() - 1) == _T('+') || cs.GetAt(cs.GetLength() - 1) == _T('-')
+	|| cs.GetAt(cs.GetLength() - 1) == _T('×') || cs.GetAt(cs.GetLength() - 1) == _T('÷') 
+	|| cs.GetAt(cs.GetLength() - 1) == _T('('))
+		SetDlgItemText(IDC_EDIT1, cs + _T("("));
+}
+
+void CcalculatorDlg::OnBnClickedButtong() //右括号
+
+{
+	CString cs;
+	GetDlgItemText(IDC_EDIT1, cs);
+	if (cs.GetLength() != 0 
+	&& ((cs.GetAt(cs.GetLength() - 1) >= _T('0') && cs.GetAt(cs.GetLength() - 1) <= _T('9') )
+	|| cs.GetAt(cs.GetLength() - 1) == _T(')')))
+		SetDlgItemText(IDC_EDIT1, cs + _T(")"));
+}
+```
+
+删除符号的功能很简单，如果文本框中的字符串不为空，则删除最后一个字符，代码如下：
+
+```cpp
+/*
+按钮←的ID为Button18
+*/
+void CcalculatorDlg::OnBnClickedButton18()
+{
+	CString cs;
+	GetDlgItemText(IDC_EDIT1, cs);
+	if (cs.GetLength() != 0) {
+		cs.Delete(cs.GetLength() - 1);
+		SetDlgItemText(IDC_EDIT1, cs);
+	}
+	return;
+}
+```
+
+等号按钮是计算器最核心
 
 ***
