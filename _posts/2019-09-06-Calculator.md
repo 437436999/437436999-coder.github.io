@@ -142,6 +142,7 @@ CString& MakeLower(); 将字符串中的所有大写字符转换为小写字符�
 CString& MakeUpper(); 将字符串中的所有小写字符转换为大写字符。
 CString& MakeReverse(); 将字符串中所有字符的顺序颠倒。
 例如：
+
 ```cpp
 CString str(_T("JiZhuoMi"));
 str.MakeLower(); // str为"jizhuomi"
