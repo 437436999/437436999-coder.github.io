@@ -355,6 +355,160 @@ void CcalculatorDlg::OnBnClickedButton18()
 }
 ```
 
-等号按钮是计算器的核心，需要对文本框中的中缀表达式进行运算并得出结果：
+等号按钮是计算器的核心，需要对文本框中的中缀表达式进行运算并得出结果，这里我使用双栈进行计算，规则如下：
+
+1. 运算时使用两个栈，一个数字栈，一个操作符栈。
+2. 从左到右依次读取表达式，如果遇到数字，则把数字压入数字栈。
+3. 如果是操作符，比较栈顶操作符和新操作符优先级：如果栈空、新的操作符是左括号(或优先级高于栈顶元素时，新的操作符入栈；如果新的操作符优先级不高于栈顶元素 ，就先出栈一个操作符进行运算，直到优先级高于栈顶元素，将新操作符入栈。
+4. 若操作符为右括号，依次将栈顶元素弹出，直到遇到左括号，并将左括号弹出。
+5. 一个操作符弹出后，将数字栈栈顶的两个元素弹出，进行该操作符的运算，再将运算结果压栈。
+6. 当读取表达式完成后，判断操作符栈是否为空，若不为空，则依次出栈直到栈空。
+7. 当操作符栈空，则数字栈栈顶元素为计算结果。
+
+但是，这种方式没法处理以负数开头的表达式和在括号中以负数开头的表达式，所以最后在实现时添加了一条规则：
+
+8. 如果操作符是负号，当负号为第一个字符或者负号的前一个字符是左括号时，该负号不入栈，并将下一个入栈的数字取反。
+
+为了方便，我直接调用了STL的`<stack>`来实现栈，最终得到的代码如下，其中函数`OnBnClickedButtona`为点击按钮，函数`NumOperate`将数字字符串转为整型，函数`Operate`为操作符入栈操作，函数`PopOne`将一个操作符出栈并完成对应运算：
+
+```cpp
+#include <stack>
+
+
+void CcalculatorDlg::OnBnClickedButtona()
+{
+	CString cs;
+	GetDlgItemText(IDC_EDIT1, cs);
+	std::stack<int> num; //数字栈
+	
+	std::stack<TCHAR> ope; //操作符栈
+	
+	int count = cs.GetLength();
+	int neg = 1; //判断是否取反的操作
+	
+	int n = 0;
+	while (n != count) {
+		if (cs.GetAt(n) >= _T('0') && cs.GetAt(n) <= _T('9')) {
+			num.push(neg * NumOperate(cs,n)); //数字入栈
+			
+			if (neg == -1)neg = 1;
+		}
+		else {
+			Operate(num ,ope ,cs ,n ,neg ); //操作符入栈
+			
+			n++;
+		}
+	}
+	while (PopOne(num, ope));
+	cs.Format(_T("%d"), num.top());
+	SetDlgItemText(IDC_EDIT1, cs);
+
+}
+
+int NumOperate(CString cs, int &n) {
+	int num = 0;
+	while (cs.GetAt(n) >= _T('0') && cs.GetAt(n) <= _T('9')) {
+		num *= 10;
+		num += cs.GetAt(n) - _T('0');
+		n++;
+	}
+	return num;
+}
+
+bool PopOne(std::stack<int> &num, std::stack<TCHAR>& ope) {
+	if (ope.empty() || ope.top() == _T('('))return 0; //
+	int a = num.top();
+	num.pop();
+	int b = num.top();
+	num.pop();
+	switch(ope.top()){
+		case _T('+'): {
+			num.push(a + b);
+			break;
+		}
+		case _T('-'): {
+			num.push(b - a);
+			break;
+		}
+		case _T('×'): {
+			num.push(a * b);
+			break;
+		}
+		case _T('÷'): {
+			num.push(b / a);
+			break;
+		}
+	}
+	ope.pop();
+	return 1;
+}
+
+void Operate(std::stack<int>& num,std::stack<TCHAR>& ope, CString &cs,int n,int &neg) {
+	TCHAR cx = cs.GetAt(n);
+	switch (cx) {
+		case _T('+'): {
+			if(ope.empty())
+				ope.push(cx);
+			else {
+				while (PopOne(num, ope));
+				ope.push(cx);
+			}
+			break;
+		}
+		case _T('-'): {
+			if (n == 0 || cs.GetAt(n - 1) == _T('(')) {
+				neg = -1; //当减号作为负号使用时，将neg赋值为-1且不入栈
+				
+				break;
+			}
+			if (ope.empty())
+				ope.push(cx);
+			else {
+				while (PopOne(num, ope));
+				ope.push(cx);
+			}
+			break;
+		}
+		case _T('×'): {
+			if (ope.empty()||ope.top()== _T('-')||ope.top()== _T('+'))
+				ope.push(cx);
+			else {
+				while (ope.top() != _T('-') && ope.top() != _T('+') && PopOne(num, ope));
+				ope.push(cx);
+			}
+			break;
+		}
+		case _T('÷'): {
+			if (ope.empty() || ope.top() == _T('-') || ope.top() == _T('+'))
+				ope.push(cx);
+			else {
+				while (ope.top() != _T('-') && ope.top() != _T('+') && PopOne(num, ope));
+				ope.push(cx);
+			}
+			break;
+		}
+		case _T('('): {
+			ope.push(cx);
+			break;
+		}
+		case _T(')'): {
+			while (PopOne(num, ope));
+			ope.pop(); //将左括号弹出
+			
+			break;
+		}
+	}
+}
+```
+
+自此，我们就完成了整个计算器功能的实现。
+
+# Todo
+
+初版的计算器功能并不完善，需要进一步的改善，现在准备在以下几个方面进行改进：
+
+- [ ] 引入小数点的输入，将计算改为浮点运算。
+- [ ] 在算式出现逻辑错误时（如3+2/0）在文本框显示`Error`字样。
+- [ ] 引入平方/开方/百分号等操作符。
 
 ***
