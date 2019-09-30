@@ -136,7 +136,7 @@ body {
      */
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
   line-height: 1.7;
-  font-size: 25px;
+  font-size: 16px;
   color: #404040;
   overflow-x: hidden;
 }
@@ -225,7 +225,7 @@ pre code {
   display: block;
   width: auto;
   white-space: pre;
-  word-wrap: normal;
+  word-wrap: break-word;
 }
 .postlist-container {
   margin-bottom: 15px;
