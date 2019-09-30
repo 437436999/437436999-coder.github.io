@@ -151,7 +151,7 @@ Configuration file: E:/Github/437436999.github.io/_config.yml
 
 ### 5. 博客高亮代码设置（2019.9.30）
 根据博客`_config.yml`的内容，本博客利用了`rouge`作为语法高亮插件。`_config.yml`里相关的参数如下：
-```
+```yml
 markdown: kramdown
 highlighter: rouge
 kramdown:
@@ -168,7 +168,7 @@ kramdown:
 添加css文件后，高亮代码设置完成了，上传至GitHub就可以在博客里查看效果了。
 
 同时，由于感觉代码字号太小，我还试着修改博客的字号大小，首先，根据`head.html`的信息，博客参数引用自`hux-blog.min.css`文件中:
-```
+```html
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ "/css/hux-blog.min.css" | prepend: site.baseurl }}">
 ```
@@ -176,7 +176,7 @@ kramdown:
 由于.min文件没有缩进，为了便于我们修改，我们先将上面的引用文件改为`hux-blog.css`，这样我们就可以直接修改`hux-blog.css`文件来修改参数了。
 
 打开`hux-blog.css`，查找（Ctrl+F）到code相关的信息如下：
-```
+```html
 pre code {
   display: block;
   width: auto;
