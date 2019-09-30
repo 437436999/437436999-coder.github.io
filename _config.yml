@@ -2,7 +2,7 @@
 title: Max.C
 SEOTitle: Max.C的博客
 header-img: img/bg.jpg
-email: 437436999@qq.com
+#email: 437436999@qq.com
 description: And we could run away.Before the light of day.
 keyword: "Max.C, C++, 中山大学, steam"
 url: "https://437436999.github.io/"          # your host, for absolute URL
@@ -24,6 +24,7 @@ github_username:    437436999
 #facebook_username:  baiying.qiu.7
 #jianshu_username:   e71990ada2fd
 #twitter_username:   qiubaiying
+email_username:  437436999@qq.com
 
 
 
