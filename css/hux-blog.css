@@ -225,7 +225,7 @@ pre code {
   display: block;
   width: auto;
   white-space: pre;
-  word-wrap: break-word;
+  word-wrap: normal;
 }
 .postlist-container {
   margin-bottom: 15px;
