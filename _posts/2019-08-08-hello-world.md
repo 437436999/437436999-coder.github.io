@@ -14,7 +14,6 @@ tags: C++ test
 作为测试的第一篇博客，惯例`Hello World`，顺便熟悉一下`markdown`语法。
 
 ``` cpp
-
 #include<iostream>
 
 using namespace std;
@@ -23,7 +22,6 @@ int main(){
 	cout<<"hello world";
 	return 0;
 }
-
 ```
 
 ```flow
@@ -61,6 +59,5 @@ $E=m^c$
 $$
 1024=2^{10}
 $$
-
 
 ***

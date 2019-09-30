@@ -194,4 +194,4 @@ pre code {
 - [jekyll-theme-H2O博客主题](https://github.com/kaeyleo/jekyll-theme-H2O)
 - [个人网站的搭建（基于GitHub和Jekyll主题 ）](https://blog.csdn.net/qq_19799765/article/details/80869363)
 - [Jekyll + Github Pages 博客搭建入门](https://www.jianshu.com/p/9f198d5779e6)
--[语法高亮不够漂亮？这里有你想要的 Rouge 主题](https://cloud.tencent.com/developer/article/1341156)
+- [语法高亮不够漂亮？这里有你想要的 Rouge 主题](https://cloud.tencent.com/developer/article/1341156)

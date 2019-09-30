@@ -132,12 +132,9 @@ CString cs=_T("this is cstring"); //例子
 
 ```cpp
 CString str1(_T(jizhuomi)); // 将常量字符串拷贝到str1
-
 CString str2(str1); // 将str1的内容拷贝到str2
-
 CString(TCHAR ch,int nLength = 1);
 CString str(_T('w'),3); // str为"www"
-
 ```
 
 >2）CString类的大小写转换及顺序转换函数<br>
@@ -149,11 +146,8 @@ CString str(_T('w'),3); // str为"www"
 ```cpp
 CString str(_T("JiZhuoMi"));
 str.MakeLower(); // str为"jizhuomi"
-
 str.MakeUpper(); // str为"JIZHUOMI"
-
 str.MakeReverse(); // str为"IMOUHZIJ"
-
 ```
 
 >3）CString对象的连接<br>
@@ -162,9 +156,7 @@ str.MakeReverse(); // str为"IMOUHZIJ"
 
 ```cpp
 CString str(_T("jizhuomi")); // str内容为"jizhuomi"
-
 str = _T("www") + str + _T("-"); // str为"wwwjizhuomi-"
-
 str += _T("com"); // str为wwwjizhuomi-com
 ```
 
@@ -186,9 +178,7 @@ CString对象的比较可以通过==、！=、<；、>；、<=、>=等重载运�
 ```cpp
 CString str = _T("jizhuomi");
 int nIndex1 = str.Find(_T("zh")); // nIndex1的值为2
-
 int nIndex2 = str.FindOneOf(_T("mui")); // nIndex2的值为1
-
 int nIndex3 = str.ReverseFind(_T('i')); // nIndex3的值为7
 ```
 
@@ -206,9 +196,7 @@ int nIndex3 = str.ReverseFind(_T('i')); // nIndex3的值为7
 ```cpp
 CString str = _T("jizhuomi");
 int n1 = str.Replace(_T('i'),_T('j')); // str为"jjzhuomj"，n1为2
-
 int n2 = str.Delete(1,2); // str为"jhuomj"，n2为6
-
 int n3 = str.Remove(_T('j')); // str为"ihuom"，n3为1
 ```
 
@@ -232,7 +220,6 @@ str.Format(_T("a=%d,b=%f"),a,b); // str为"a=1,b=2.300000"
 ```cpp
 CString str=_T("Hello");
 int n=str.GetLength(); //n=5
-
 TCHAR CH=str.GetAt(str.GetLength()-1); //CH='o'
 ```
 
@@ -266,12 +253,9 @@ TCHAR CH=str.GetAt(str.GetLength()-1); //CH='o'
 void CcalculatorDlg::OnBnClickedButton1()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	
 	CString cs;
 	GetDlgItemText(IDC_EDIT1, cs); //读取当前文本框中的内容
-	
 	SetDlgItemText(IDC_EDIT1, cs + _T("1")); //将内容最后加上"1"并写入文本框
-	
 }
 ```
 
@@ -282,7 +266,6 @@ void CcalculatorDlg::OnBnClickedButton1()
 按钮+的ID为b，按钮-的ID为c
 */
 void CcalculatorDlg::OnBnClickedButtonb() //加号操作
-
 {
 	CString cs;
 	GetDlgItemText(IDC_EDIT1, cs);
@@ -296,7 +279,6 @@ void CcalculatorDlg::OnBnClickedButtonb() //加号操作
 }
 
 void CcalculatorDlg::OnBnClickedButtonc() //减号操作
-
 {
 	CString cs;
 	GetDlgItemText(IDC_EDIT1, cs);
@@ -314,7 +296,6 @@ void CcalculatorDlg::OnBnClickedButtonc() //减号操作
 
 ```cpp
 void CcalculatorDlg::OnBnClickedButtonf() //左括号
-
 {
 	CString cs;
 	GetDlgItemText(IDC_EDIT1, cs);
@@ -326,7 +307,6 @@ void CcalculatorDlg::OnBnClickedButtonf() //左括号
 }
 
 void CcalculatorDlg::OnBnClickedButtong() //右括号
-
 {
 	CString cs;
 	GetDlgItemText(IDC_EDIT1, cs);
@@ -374,28 +354,22 @@ void CcalculatorDlg::OnBnClickedButton18()
 ```cpp
 #include <stack>
 
-
 void CcalculatorDlg::OnBnClickedButtona()
 {
 	CString cs;
 	GetDlgItemText(IDC_EDIT1, cs);
 	std::stack<int> num; //数字栈
-	
 	std::stack<TCHAR> ope; //操作符栈
-	
 	int count = cs.GetLength();
 	int neg = 1; //判断是否取反的操作
-	
 	int n = 0;
 	while (n != count) {
 		if (cs.GetAt(n) >= _T('0') && cs.GetAt(n) <= _T('9')) {
 			num.push(neg * NumOperate(cs,n)); //数字入栈
-			
 			if (neg == -1)neg = 1;
 		}
 		else {
 			Operate(num ,ope ,cs ,n ,neg ); //操作符入栈
-			
 			n++;
 		}
 	}
@@ -457,8 +431,7 @@ void Operate(std::stack<int>& num,std::stack<TCHAR>& ope, CString &cs,int n,int 
 		}
 		case _T('-'): {
 			if (n == 0 || cs.GetAt(n - 1) == _T('(')) {
-				neg = -1; //当减号作为负号使用时，将neg赋值为-1且不入栈
-				
+				neg = -1; //当减号作为负号使用时，将neg赋值为-1且不入栈	
 				break;
 			}
 			if (ope.empty())
@@ -494,7 +467,6 @@ void Operate(std::stack<int>& num,std::stack<TCHAR>& ope, CString &cs,int n,int 
 		case _T(')'): {
 			while (PopOne(num, ope));
 			ope.pop(); //将左括号弹出
-			
 			break;
 		}
 	}
