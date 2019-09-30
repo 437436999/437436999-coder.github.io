@@ -176,7 +176,7 @@ kramdown:
 由于.min文件没有缩进，为了便于我们修改，我们先将上面的引用文件改为`hux-blog.css`，这样我们就可以直接修改`hux-blog.css`文件来修改参数了。
 
 打开`hux-blog.css`，查找（Ctrl+F）到code相关的信息如下：
-```html
+```css
 pre code {
   display: block;
   width: auto;
