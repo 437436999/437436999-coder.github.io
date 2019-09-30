@@ -1,7 +1,7 @@
 ---
 layout:     post                          
 title:     '基于Jekyll与Github Pages搭建博客'          
-date:       2019-08-08                   
+date:       2019-09-30                   
 author:     Max.C                    
 header-img: 'assets/img/pro5.png'
 catalog: true                           
@@ -90,7 +90,7 @@ jekyll 3.8.6
 - [我使用的博客模板](https://github.com/kaeyleo/jekyll-theme-H2O#%E6%A0%87%E7%AD%BE)
 
  jekyll 的目录结构大概是这样的：
-```c
+```
 .
 ├── assets # 存放用于线上环境的静态资源，比如我们想放在博客上的图片之类
 ├── _config.yml # 配置文件，我们通过修改这里的参数改造博客
@@ -124,7 +124,7 @@ jekyll 3.8.6
 
 为了看到博客呈现出来的效果，就要用上我们上一步安装的 Jekyll，先打开命令行，将路径修改至**博客模板所在路径**，执行命令` jekyll server`，复制 http://127.0.0.1:4000/ 到浏览器打开，就能看见本地的博客了。
 
-```cpp
+```
 PS E:\Github\437436999.github.io> jekyll server
 Configuration file: E:/Github/437436999.github.io/_config.yml
             Source: E:/Github/437436999.github.io
@@ -149,9 +149,49 @@ Configuration file: E:/Github/437436999.github.io/_config.yml
 
 ![我的博客所在的Github库](/assets/post_img/2019-08-08/4.png)
 
+### 5. 博客高亮代码设置（2019.9.30）
+根据博客`_config.yml`的内容，本博客利用了`rouge`作为语法高亮插件。`_config.yml`里相关的参数如下：
+```
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM 
+```
+
+根据上面的教程，我们已经配置好 Ruby 环境，我们可以用命令配置rouge文件，步骤如下：
+
+1. 打开命令行，输入命令安装rouge：`gem install rouge`
+2. 安装之后，使用以下命令查看自带的样式有哪些：`rougify help style`。样式主题预览可以参考下面的参考资料。
+3. 在本地博客文件的**根目录**里打开命令行，使用命令`rougify style github > css/syntax.css`生成一个 github 风格的样式到`css/syntax.css`文件中。
+4. 由于我们的博客原来已经引用了rouge插件，所以`_includes/head.html`中已经引用了该css文件。如果博客里原来没有引用，注意需要在`head.html`中加入`<link rel="stylesheet" href="{{ "/css/syntax.css" | prepend: site.baseurl }}">`
+
+添加css文件后，高亮代码设置完成了，上传至GitHub就可以在博客里查看效果了。
+
+同时，由于感觉代码字号太小，我还试着修改博客的字号大小，首先，根据`head.html`的信息，博客参数引用自`hux-blog.min.css`文件中:
+```
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ "/css/hux-blog.min.css" | prepend: site.baseurl }}">
+```
+
+由于.min文件没有缩进，为了便于我们修改，我们先将上面的引用文件改为`hux-blog.css`，这样我们就可以直接修改`hux-blog.css`文件来修改参数了。
+
+打开`hux-blog.css`，查找（Ctrl+F）到code相关的信息如下：
+```
+pre code {
+  display: block;
+  width: auto;
+  white-space: pre;
+  word-wrap: normal;
+}
+```
+
+发现没有字号大小相关的信息，我们尝试在大括号中加上`font-size: 17px;`，上传至GitHub，发现代码的字号大小成功改变。
+
+
 ## 参考资料
 本次博客的搭建主要参考了以下内容，感谢作者们~
 - [基于Jekyll搭建个人博客](https://wu-kan.github.io/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/%E5%9F%BA%E4%BA%8EJekyll%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2)
 - [jekyll-theme-H2O博客主题](https://github.com/kaeyleo/jekyll-theme-H2O)
 - [个人网站的搭建（基于GitHub和Jekyll主题 ）](https://blog.csdn.net/qq_19799765/article/details/80869363)
 - [Jekyll + Github Pages 博客搭建入门](https://www.jianshu.com/p/9f198d5779e6)
+-[语法高亮不够漂亮？这里有你想要的 Rouge 主题](https://cloud.tencent.com/developer/article/1341156)
