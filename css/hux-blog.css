@@ -205,7 +205,7 @@ select {
 }
 select.sel-lang {
   min-height: 28px;
-  font-size: 40px;
+  font-size: 14px;
 }
 .table th,
 .table td {
@@ -224,6 +224,7 @@ pre,
 pre code {
   display: block;
   width: auto;
+  font-size: 30px;
   white-space: pre;
   word-wrap: normal;
 }
