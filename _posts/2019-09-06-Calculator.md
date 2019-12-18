@@ -4,7 +4,7 @@ title: Calculator
 subtitle:   "利用MFC设计一个计算器"
 date: 2019-09-08
 author: Max.C
-header-img: 'assets/img/pro3.jpg'
+header-img: 'assets/img/pro3.png'
 catalog: true
 tags: C++ MFC 
 ---
