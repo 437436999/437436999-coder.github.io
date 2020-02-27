@@ -38,15 +38,15 @@ $R_z=\begin{bmatrix} \cos{\theta} &  \sin{\theta} &0\\ -\sin{\theta} & \cos{\the
 
 设旋转向量的单位向量为 r，模为 θ。三维点（或者说三维向量）p 在旋转向量 r 的作用下变换至 p′，则：
 
-![img](https://img-blog.csdnimg.cn/20181130105754473.png)
+![img](../assets/post_img/2020-02-12/38.png)
 
 ### 2、相互转换
 
 设旋转向量的单位向量 $r=[rx ry rz]^T$，旋转角度为 θ，对应的旋转矩阵为 R，则 r 到 R 的转换是：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2018113011014873.png)
+![img](../assets/post_img/2020-02-12/39.png)
 
 其中 I 是三阶单位矩阵。反过来 R 到 r 的转换则可以利用等式：
 
-![img](https://img-blog.csdnimg.cn/20181130110241110.png)
+![img](../assets/post_img/2020-02-12/40.png)
 
 openCV函数实现为`Rodrigues(Vec3, Mat33)`。
